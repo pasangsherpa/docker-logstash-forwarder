@@ -1,6 +1,8 @@
-# [logstash-forwarder](https://github.com/elastic/logstash-forwarder)
+# [logstash-forwarder](https://github.com/pasangsherpa/logstash-forwarder)
 
 > Dockerized Logstash Forwarder: A tool to collect logs locally in preparation for processing elsewhere!
+
+https://github.com/elastic/logstash-forwarder
 
 If you want the ELK stack, checkout [elk-stack](https://github.com/pasangsherpa/elk-stack).
 
@@ -10,15 +12,37 @@ If you want the ELK stack, checkout [elk-stack](https://github.com/pasangsherpa/
 
 ### Run and test
 
-    docker run -it --rm pasangsherpa/logstash-forwarder -h  # equivalent of 'logstash-forwarder -h'
+    # The container runs as 'logstash-forwarder' executable. 
+    docker run -i --rm pasangsherpa/logstash-forwarder -h
 
-    docker run -it --rm -v /var/log/test:/var/log -v `pwd`/config/conf:/opt/conf -v `pwd`/config/certs:/opt/certs -t pasangsherpa/logstash-forwarder
+    # Read logs from stdin
+    docker run -i --rm -v `pwd`/config/conf-stdin:/opt/conf \
+                       -v `pwd`/config/certs:/opt/certs \
+                       pasangsherpa/logstash-forwarder
+    test stdin
+    test stdin
+    ^C
+
+    # Pipe logs to stdin from node server using debug module
+    DEBUG=test:server npm start | docker run -i --rm \
+                        -v `pwd`/config/conf-stdin:/opt/conf \
+                        -v `pwd`/config/certs:/opt/certs \
+                        pasangsherpa/logstash-forwarder
+
+    # Read logs from a file
+    docker run --name forwarder -d \
+               -v /var/log/test:/var/log \
+               -v `pwd`/config/conf:/opt/conf \
+               -v `pwd`/config/certs:/opt/certs \
+               pasangsherpa/logstash-forwarder
 
     cat >> /var/log/test/test.log
-    test
-    test
-    test
+    test file
+    test file
     ^C
+
+    # Stop and remove container
+    docker rm $(docker stop forwarder)
 
     Log in to the Kibana interface, you should see the logs 3 test messages there.
 

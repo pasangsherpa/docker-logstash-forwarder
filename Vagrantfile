@@ -10,9 +10,7 @@ $script = <<SCRIPT
   cd /vagrant;
 
   # Run logstash-forwarder
-  docker stop forwarder;
-  docker rm forwarder;
-  docker run -h `hostname` --name forwarder -d -v /var/log/test:/var/log -v `pwd`/config/conf:/opt/conf -v `pwd`/config/certs:/opt/certs -t pasangsherpa/logstash-forwarder;
+  docker run -i --rm -h `hostname` -v /var/log/test:/var/log -v `pwd`/config/conf:/opt/conf -v `pwd`/config/certs:/opt/certs pasangsherpa/logstash-forwarder;
 
 SCRIPT
 
