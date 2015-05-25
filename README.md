@@ -24,7 +24,7 @@
     /opt/conf  - Configuration folder with config.json
     /opt/certs - Certs folder with logstash-forwarder.crt and logstash-forwarder.key (used to start logstash)
 
-Example config.json
+Example config.json. *NOTE: Replace 'logstash_server_fqdn' with your logstash server dns.*
 
     {
       "network": {
