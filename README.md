@@ -9,7 +9,7 @@
 ### Run and test
 
     mkdir /tmp/test && touch /tmp/test/test.log
-    docker run --name forwarder -d -v /tmp/test:/tmp/test -v `pwd`/conf:/opt/conf -v `pwd`/certs:/opt/certs -t quay.io/concur_platform/logstash-forwarder
+    docker run --name forwarder -d -v /tmp/test:/tmp/test -v `pwd`/conf:/opt/conf -v `pwd`/certs:/opt/certs -t pasangsherpa/logstash-forwarder
 
     cat >> /tmp/test/test.log
     test
@@ -21,10 +21,10 @@
 
 ### Volumes:
 
-    /opt/conf  - Configuration folder with config.json
+    /opt/conf  - Configuration folder with logstash-forwarder.conf
     /opt/certs - Certs folder with logstash-forwarder.crt and logstash-forwarder.key (used to start logstash)
 
-Example config.json. *NOTE: Replace '<logstash_server_fqdn>' with your logstash server dns.*
+Example logstash-forwarder.conf. *NOTE: Replace '<logstash_server_fqdn>' with your logstash server dns.*
 
     {
       "network": {
