@@ -11,7 +11,7 @@ else
         set -- gosu logstash-forwarder "$@"
     else
         # As argument is not related to logstash-forwarder,
-        # then assume that user wants to run his own process,
+        # then assume that user wants to run their own process,
         # for example a `bash` shell to explore this image
         exec "$@"
     fi
