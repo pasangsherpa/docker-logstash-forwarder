@@ -45,4 +45,9 @@ Example logstash-forwarder.conf. *NOTE: Replace '<logstash_server_fqdn>' with yo
     sudo openssl req -subj '/CN=<logstash_server_fqdn>/' -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt
 
 
+## License
+
+[MIT](http://opensource.org/licenses/MIT) © [Pasang Sherpa](https://github.com/pasangsherpa)
+
+
 [1]: "https://registry.hub.docker.com/u/pasangsherpa/kibana/"
