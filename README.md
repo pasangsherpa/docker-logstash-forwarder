@@ -51,4 +51,4 @@ Example logstash-forwarder.conf. *NOTE: Replace '<logstash_server_fqdn>' with yo
 [MIT](http://opensource.org/licenses/MIT) © [Pasang Sherpa](https://github.com/pasangsherpa)
 
 
-[1]: "https://registry.hub.docker.com/u/pasangsherpa/kibana/"
+[1]: https://registry.hub.docker.com/u/pasangsherpa/kibana/
