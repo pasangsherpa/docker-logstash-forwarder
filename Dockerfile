@@ -15,6 +15,9 @@ RUN apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 46095ACC8548582C
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Expose volumes
+VOLUME ["/opt/conf", "/opt/certs"]
+
 # Include logstash-forwarder in the PATH
 ENV PATH /opt/logstash-forwarder/bin:$PATH
 
