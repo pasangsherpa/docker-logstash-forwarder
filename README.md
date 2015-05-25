@@ -28,7 +28,7 @@ Example config.json
 
     {
       "network": {
-        "servers": [ "ec2-52-24-167-46.us-west-2.compute.amazonaws.com:5000" ],
+        "servers": [ "logstash_server_fqdn:5000" ],
         "ssl certificate": "/opt/certs/logstash-forwarder.crt",
         "ssl key": "/opt/certs/logstash-forwarder.key",
         "ssl ca": "/opt/certs/logstash-forwarder.crt",
