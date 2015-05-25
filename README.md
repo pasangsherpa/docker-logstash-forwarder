@@ -10,7 +10,9 @@ If you want the ELK stack, checkout [elk-stack](https://github.com/pasangsherpa/
 
 ### Run and test
 
-    docker run --name forwarder -d -v /var/log/test:/var/log -v `pwd`/config/conf:/opt/conf -v `pwd`/config/certs:/opt/certs -t pasangsherpa/logstash-forwarder
+    docker run -it --rm pasangsherpa/logstash-forwarder -h  # equivalent of 'logstash-forwarder -h'
+
+    docker run -it --rm -v /var/log/test:/var/log -v `pwd`/config/conf:/opt/conf -v `pwd`/config/certs:/opt/certs -t pasangsherpa/logstash-forwarder
 
     cat >> /var/log/test/test.log
     test
