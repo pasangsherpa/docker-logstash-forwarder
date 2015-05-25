@@ -10,10 +10,9 @@ If you want the ELK stack, checkout [elk-stack](https://github.com/pasangsherpa/
 
 ### Run and test
 
-    mkdir /tmp/test && touch /tmp/test/test.log
-    docker run --name forwarder -d -v /tmp/test:/tmp/test -v `pwd`/conf:/opt/conf -v `pwd`/certs:/opt/certs -t pasangsherpa/logstash-forwarder
+    docker run --name forwarder -d -v /var/log/test:/var/log -v `pwd`/config/conf:/opt/conf -v `pwd`/config/certs:/opt/certs -t pasangsherpa/logstash-forwarder
 
-    cat >> /tmp/test/test.log
+    cat >> /var/log/test/test.log
     test
     test
     test
@@ -31,7 +30,7 @@ Example logstash-forwarder.conf. *NOTE: Replace '<logstash_server_fqdn>' with yo
     {
       "network": {
         "servers": [ "<logstash_server_fqdn>:5000" ],
-        "ssl ca": "/opt/certs/logstash-forwarder.crt",
+        "ssl ca": "/opt/certs/logstash-forwarder.crt", # ssl cert generated in logstash server
         "timeout": 15
       },
       "files": [
