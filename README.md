@@ -2,7 +2,7 @@
 
 > Dockerized Logstash Forwarder: A tool to collect logs locally in preparation for processing elsewhere!
 
-https://github.com/elastic/logstash-forwarder
+[https://github.com/elastic/logstash-forwarder](https://github.com/elastic/logstash-forwarder)
 
 If you want the ELK stack, checkout [elk-stack](https://github.com/pasangsherpa/elk-stack).
 
