@@ -17,7 +17,7 @@ If you want the ELK stack, checkout [elk-stack](https://github.com/pasangsherpa/
 
     # Read logs from stdin
     docker run -i --rm -v `pwd`/config/conf-stdin:/opt/conf \
-                       -v `pwd`/config/certs:/opt/certs \
+                       -v `pwd`/config/certs:/etc/ssl \
                        pasangsherpa/logstash-forwarder
     test stdin
     test stdin
@@ -26,14 +26,14 @@ If you want the ELK stack, checkout [elk-stack](https://github.com/pasangsherpa/
     # Pipe logs to stdin from node server using debug module
     DEBUG=test:server npm start | docker run -i --rm \
                         -v `pwd`/config/conf-stdin:/opt/conf \
-                        -v `pwd`/config/certs:/opt/certs \
+                        -v `pwd`/config/certs:/etc/ssl \
                         pasangsherpa/logstash-forwarder
 
     # Read logs from a file
     docker run --name forwarder -d \
                -v /var/log/test:/var/log \
                -v `pwd`/config/conf:/opt/conf \
-               -v `pwd`/config/certs:/opt/certs \
+               -v `pwd`/config/certs:/etc/ssl \
                pasangsherpa/logstash-forwarder
 
     cat >> /var/log/test/test.log
@@ -49,14 +49,14 @@ If you want the ELK stack, checkout [elk-stack](https://github.com/pasangsherpa/
 ### Volumes:
 
     /opt/conf  - Configuration folder with logstash-forwarder.conf
-    /opt/certs - Certs folder with logstash-forwarder.crt and logstash-forwarder.key (used to start logstash)
+    /etc/ssl - Certs folder with logstash-forwarder.crt and logstash-forwarder.key (used to start logstash)
 
 Example logstash-forwarder.conf. *NOTE: Replace '<logstash_server_fqdn>' with your logstash server dns.*
 
     {
       "network": {
         "servers": [ "<logstash_server_fqdn>:5000" ],
-        "ssl ca": "/opt/certs/logstash-forwarder.crt", # ssl cert generated in logstash server
+        "ssl ca": "/etc/ssl/logstash-forwarder.crt", #ssl cert generated in logstash server
         "timeout": 15
       },
       "files": [
@@ -66,7 +66,7 @@ Example logstash-forwarder.conf. *NOTE: Replace '<logstash_server_fqdn>' with yo
       ]
     }
 
-### Generating ssl certificate in the logstash server
+### Generating ssl certificate in the LOGSTASH SERVER
 
     cd /etc/pki/tls;
     sudo openssl req -subj '/CN=<logstash_server_fqdn>/' -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt

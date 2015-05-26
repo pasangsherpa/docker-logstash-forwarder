@@ -6,11 +6,12 @@ Vagrant.require_version ">= 1.6.3"
 
 $script = <<SCRIPT
   
-  mkdir -p /var/log/test;
   cd /vagrant;
 
   # Run logstash-forwarder
-  docker run -i --rm -h `hostname` -v /var/log/test:/var/log -v `pwd`/config/conf:/opt/conf -v `pwd`/config/certs:/opt/certs pasangsherpa/logstash-forwarder;
+  docker run -i --rm -h `hostname` -v `pwd`/config/conf:/opt/conf-stdin \
+                                   -v `pwd`/config/ssl:/etc/ssl \
+                                   pasangsherpa/logstash-forwarder;
 
 SCRIPT
 
